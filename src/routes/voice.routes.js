@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { analyzeVoice } from "../services/ml.service.js";
+import { analyzeVoice } from "../services/analyzeVoice.js";
 import fs from "fs";
 
 const router = express.Router();
