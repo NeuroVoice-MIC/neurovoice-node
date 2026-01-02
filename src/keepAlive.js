@@ -1,12 +1,16 @@
 import axios from "axios";
 
-const ML_HEALTH_URL = "https://neurovoice-ml.onrender.com/";
+const SERVICE_URL = "https://YOUR-NODE-SERVICE.onrender.com/health";
+
+const PING_INTERVAL = 5 * 60 * 1000; // 5 minutes
+
+console.log("🫀 Keep-alive service started");
 
 setInterval(async () => {
   try {
-    await axios.get(ML_HEALTH_URL);
-    console.log("🔥 ML service kept warm");
-  } catch {
-    console.warn("⚠️ ML keep-alive ping failed");
+    const res = await axios.get(SERVICE_URL);
+    console.log(`✅ Ping OK: ${res.status}`);
+  } catch (err) {
+    console.error("❌ Ping failed:", err.message);
   }
-}, 5 * 60 * 1000); // every 5 minutes
+}, PING_INTERVAL);
